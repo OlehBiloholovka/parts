@@ -1,0 +1,25 @@
+<form>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name"
+           required
+           [(ngModel)]="currentPart.name" name="name">
+  </div>
+
+  <div class="form-group">
+    <label for="needed">Is needed</label>
+    <input type="checkbox"  class="form-control" id="needed"
+           required
+           [(ngModel)]="currentPart.needed" name="needed">
+  </div>
+
+  <div class="form-group">
+    <label for="quantity">Quantity</label>
+    <input type="number" class="form-control"  id="quantity"
+           required
+           [(ngModel)]="currentPart.quantity" name="quantity">
+  </div>
+
+  <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
+</form>
+

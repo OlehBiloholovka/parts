@@ -10,8 +10,9 @@ import {Subscription} from "rxjs";
 })
 export class PartsComponent implements OnInit, OnDestroy {
 
-  private partSubscription: Subscription
+  private partSubscription: Subscription;
   parts: Part[];
+  add: boolean;
 
   constructor(private partService: PartService) { }
 
@@ -23,5 +24,9 @@ export class PartsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.partSubscription.unsubscribe();
+  }
+
+  addNewPart() {
+    this.add = true;
   }
 }

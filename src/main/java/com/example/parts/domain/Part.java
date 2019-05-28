@@ -10,15 +10,15 @@ public class Part {
     @GeneratedValue
     private Long id;
     private String name;
-    private Boolean isNeeded;
+    private Boolean needed;
     private Integer quantity;
 
     public Part() {
     }
 
-    public Part(String name, Boolean isNeeded, Integer quantity) {
+    public Part(String name, Boolean needed, Integer quantity) {
         this.name = name;
-        this.isNeeded = isNeeded;
+        this.needed = needed;
         this.quantity = quantity;
     }
 
@@ -34,12 +34,12 @@ public class Part {
         this.name = name;
     }
 
-    public Boolean getNeeded() {
-        return isNeeded;
+    public Boolean isNeeded() {
+        return needed;
     }
 
     public void setNeeded(Boolean needed) {
-        isNeeded = needed;
+        this.needed = needed;
     }
 
     public Integer getQuantity() {
