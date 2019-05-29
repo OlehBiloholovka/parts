@@ -29,7 +29,12 @@ public class PartController {
     }
 
     @PostMapping("/parts/delete")
-    public void deletePart(@RequestBody Part part) {
-        partService.deletePart(part);
+    public void deletePart(@RequestBody Long partId) {
+        partService.deletePart(partId);
+    }
+
+    @GetMapping("/parts/computers")
+    public Integer getComputers() {
+        return partService.getComputers();
     }
 }

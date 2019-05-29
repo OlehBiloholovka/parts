@@ -1,5 +1,5 @@
 export class Part {
-  $id: number;
+  id: number;
   name: string;
   needed: boolean;
   quantity: number;

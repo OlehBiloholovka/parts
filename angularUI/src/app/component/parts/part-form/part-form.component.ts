@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Part} from "../../../share/part.model";
 import {PartService} from "../../../share/part.service";
 
@@ -8,15 +8,20 @@ import {PartService} from "../../../share/part.service";
   styleUrls: ['./part-form.component.sass']
 })
 export class PartFormComponent implements OnInit {
-  currentPart: Part;
+  @Input() currentPart: Part;
+  @Output()
+  showForm = new EventEmitter<boolean>();
   constructor(private partService: PartService) { }
 
   ngOnInit() {
-    this.currentPart = new Part();
   }
 
   onSubmit() {
-    this.partService.savePart(this.currentPart).subscribe(console.log);
+    this.partService.savePart(this.currentPart)
+      .subscribe(() => this.showForm.emit(false));
   }
 
+  onCancel() {
+    this.showForm.emit(false);
+  }
 }

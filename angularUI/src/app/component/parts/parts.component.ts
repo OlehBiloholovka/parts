@@ -11,22 +11,52 @@ import {Subscription} from "rxjs";
 export class PartsComponent implements OnInit, OnDestroy {
 
   private partSubscription: Subscription;
+  private computersSubscription: Subscription;
   parts: Part[];
-  add: boolean;
+  showForm: boolean;
+  currentPart: Part;
+  computers: number;
 
   constructor(private partService: PartService) { }
 
   ngOnInit() {
-    this.partSubscription = this.partService.findAllParts().subscribe(data => {
-      this.parts = data;
-    });
+    this.getData();
   }
 
   ngOnDestroy(): void {
     this.partSubscription.unsubscribe();
+    this.computersSubscription.unsubscribe();
+  }
+
+  private getData(): void {
+    this.partSubscription = this.partService.findAllParts().subscribe(data => {
+      this.parts = data;
+    });
+    this.getComputers();
+  }
+
+  private getComputers(): void {
+    this.computersSubscription = this.partService.getComputers().subscribe(data => {
+      this.computers = data;
+    });
   }
 
   addNewPart() {
-    this.add = true;
+    this.currentPart = new Part();
+    this.showForm = true;
+  }
+
+  onEdit(part: Part) {
+    this.showForm = true;
+    this.currentPart = part;
+  }
+
+  onDelete(partId: number) {
+    this.partService.deletePart(partId);
+  }
+
+  onAddPart(showForm: boolean) {
+    this.showForm = showForm;
+    this.getData();
   }
 }

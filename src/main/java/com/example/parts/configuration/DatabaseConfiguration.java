@@ -8,6 +8,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Arrays;
+
 @Configuration
 public class DatabaseConfiguration {
 
@@ -21,8 +23,14 @@ public class DatabaseConfiguration {
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
-            Part motherBoard = new Part("MotherBoard", true, 4);
-            partRepository.save(motherBoard);
+            Part motherBoard = new Part("Mother Board", true, 4);
+            Part soundCard = new Part("Sound Card", true, 2);
+            Part cpu = new Part("CPU", true, 12);
+            Part hdd = new Part("HDD", false, 41);
+            Part ram = new Part("RAM", true, 4);
+            Part ssd = new Part("SSD", true, 5);
+            Part gpuCard = new Part("GPU card", false, 4);
+            partRepository.saveAll(Arrays.asList(motherBoard, soundCard, cpu, hdd, ram, ssd, gpuCard));
         };
     }
 }

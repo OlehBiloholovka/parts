@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PartServiceImpl implements PartService {
@@ -29,7 +30,13 @@ public class PartServiceImpl implements PartService {
     }
 
     @Override
-    public void deletePart(Part part) {
-        partRepository.delete(part);
+    public void deletePart(Long partId) {
+        Optional<Part> byId = partRepository.findById(partId);
+        byId.ifPresent(partRepository::delete);
+    }
+
+    @Override
+    public Integer getComputers() {
+        return partRepository.getComputers();
     }
 }

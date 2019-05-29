@@ -1,18 +1,36 @@
 <table class="table table-bordered table-striped">
-  <thead class="thead-dark">
-  <tr>
-    <th scope="col">Name</th>
-    <th scope="col">Is needed</th>
-    <th scope="col">Quantity</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let part of parts">
-    <td>{{ part.name }}</td>
-    <td>{{ part.needed }}</td>
-    <td>{{ part.quantity }}</td>
-  </tr>
-  </tbody>
+    <thead class="thead-dark">
+    <tr>
+        <th>Name</th>
+        <th>Is needed</th>
+        <th>Quantity</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let part of parts">
+        <td>{{ part.name }}</td>
+        <td>{{ part.needed }}</td>
+        <td>{{ part.quantity }}</td>
+        <td>
+            <div class="btn-group">
+                <button class="btn btn-outline-success" (click)="onEdit(part)">Edit</button>
+                <button class="btn btn-outline-danger" (click)="onDelete(part.id)">Delete</button></div>
+        </td>
+    </tr>
+    </tbody>
 </table>
-<button class="btn btn-success" (click)="addNewPart()">Add new part</button>
-<app-part-form *ngIf="add"></app-part-form>
+<br>
+<table class="table table-bordered table-striped">
+    <tbody>
+    <tr>
+        <td>Can make</td>
+        <td>{{computers}}</td>
+        <td>Computers</td>
+        <td>
+            <button class="btn btn-success"  (click)="addNewPart() ">Add new part</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<app-part-form  *ngIf="showForm" [currentPart]="currentPart" (showForm)="onAddPart($event)"></app-part-form>

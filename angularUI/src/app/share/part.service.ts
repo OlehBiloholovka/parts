@@ -20,4 +20,15 @@ export class PartService {
   public savePart(part: Part) {
     return this.http.post<Part>(this.partUrl, part);
   }
+
+  public deletePart(partId: number): boolean {
+    let isDeleted = false;
+    this.http.post<Part>( this.partUrl + '/delete', partId)
+        .subscribe(() => isDeleted = true);
+    return isDeleted;
+  }
+
+  public getComputers(): Observable<number> {
+    return this.http.get<number>(this.partUrl + '/computers');
+  }
 }

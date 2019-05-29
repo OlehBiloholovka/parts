@@ -20,6 +20,8 @@
            [(ngModel)]="currentPart.quantity" name="quantity">
   </div>
 
-  <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
+  <div class="d-flex flex-row justify-content-around">
+    <button type="submit" class="btn  btn-success " (click)="onSubmit()">Submit</button>
+    <button type="button" class="btn  btn-danger" (click)="onCancel()">Cancel</button>
+  </div>
 </form>
-

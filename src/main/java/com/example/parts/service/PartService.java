@@ -7,5 +7,6 @@ import java.util.List;
 public interface PartService {
     List<Part> getAllParts();
     Part savePart(Part part);
-    void deletePart(Part part);
+    void deletePart(Long partId);
+    Integer getComputers();
 }
